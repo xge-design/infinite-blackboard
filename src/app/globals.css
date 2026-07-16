@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ═══════════════════════════════════════════════════
+   基础重置
+   ═══════════════════════════════════════════════════ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  background: #2a2a2a;
+  color: #e8e4d9;
+  font-family: 'LXGW WenKai', 'Noto Serif SC', 'Source Han Serif SC', serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ═══════════════════════════════════════════════════
+   黑板纹理（纯 CSS）
+   ═══════════════════════════════════════════════════ */
+
+.chalkboard-bg {
+  position: relative;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse at 30% 20%, #2d2d2d 0%, #2a2a2a 50%, #252525 100%);
+}
+
+/* 暗角 */
+.chalkboard-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 35%,
+    rgba(0, 0, 0, 0.45) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ═══════════════════════════════════════════════════
+   字体
+   ═══════════════════════════════════════════════════ */
+
+.font-chalk {
+  font-family: 'LXGW WenKai', 'Noto Serif SC', serif;
+}
+
+/* ═══════════════════════════════════════════════════
+   加载动画
+   ═══════════════════════════════════════════════════ */
+
+@keyframes breathe {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 0.5; }
+}
+
+.loading-breathe {
+  animation: breathe 3s ease-in-out infinite;
+}
+
+/* ═══════════════════════════════════════════════════
+   选中与滚动条
+   ═══════════════════════════════════════════════════ */
+
+::selection {
+  background: rgba(232, 228, 217, 0.15);
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* ═══════════════════════════════════════════════════
+   焦点
+   ═══════════════════════════════════════════════════ */
+
+*:focus-visible {
+  outline: 2px solid rgba(232, 228, 217, 0.3);
+  outline-offset: 2px;
+}
+
+/* 输入框焦点 */
+input:focus {
+  border-color: rgba(232, 228, 217, 0.3) !important;
+}
+
+/* ═══════════════════════════════════════════════════
+   工具类
+   ═══════════════════════════════════════════════════ */
+
+.no-select {
+  user-select: none;
+  -webkit-user-select: none;
+}
